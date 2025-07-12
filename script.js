@@ -25,6 +25,9 @@ function renderList() {
 
   paginated.forEach(pokemon => {
     const li = document.createElement('li');
+    if (isCollected(pokemon.id)) {
+  li.classList.add('collected');
+}
 
     const label = document.createElement('label');
     label.textContent = `#${String(pokemon.id).padStart(3, '0')} ${pokemon.name}`;
@@ -33,8 +36,9 @@ function renderList() {
     checkbox.type = 'checkbox';
     checkbox.checked = isCollected(pokemon.id);
     checkbox.addEventListener('change', () => {
-      saveCollected(pokemon.id, checkbox.checked);
-    });
+  saveCollected(pokemon.id, checkbox.checked);
+  li.classList.toggle('collected', checkbox.checked);
+});
 
     li.appendChild(label);
     li.appendChild(checkbox);
