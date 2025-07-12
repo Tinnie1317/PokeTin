@@ -60,12 +60,13 @@ li {
 
 #app-header {
   text-align: center;
-  background-color: #f5f5f5;
+  background-color: rgba(208, 245, 208, 0.6); /* Light green, 60% opacity */
   padding: 1em;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #b2d8b2;
   position: sticky;
   top: 0;
   z-index: 10;
+  backdrop-filter: blur(4px);
 }
 
 #app-header h1 {
