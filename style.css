@@ -43,8 +43,9 @@ label {
 }
 
 .collected {
-  background-color: #5ce6ac;
+  background-color: rgba(208, 245, 208, 0.6);
   border-radius: 5px;
+  border-colour: #b2d8b2;
 }
 
 li { 
