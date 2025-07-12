@@ -1,5 +1,7 @@
 # Pokémon Checklist Tracker
 
+https://tinnie1317.github.io/PokeTin/
+
 A simple, lightweight web app for tracking your collected Pokémon — designed to run smoothly on mobile via browser or GitHub Pages.
 
 ---
