@@ -8,6 +8,7 @@ window.onload = async () => {
   pokemonData = await res.json();
   loadSavedStatus();
   renderList();
+  updateProgressTracker(); 
 };
 
 function renderList() {
@@ -46,6 +47,16 @@ function renderList() {
   });
 
   updatePageInfo(sorted.length);
+  updateProgressTracker();
+}
+
+function updateProgressTracker() {
+  const total = pokemonData.length;
+  const collected = pokemonData.filter(p => isCollected(p.id)).length;
+  const tracker = document.getElementById('progress-tracker');
+  if (tracker) {
+    tracker.textContent = `Collected: ${collected} / ${total}`;
+  }
 }
 
 function prevPage() {
