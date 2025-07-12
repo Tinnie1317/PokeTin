@@ -1,5 +1,7 @@
 let pokemonData = [];
 let currentSort = 'number';
+let currentPage = 1;
+const itemsPerPage = 100;
 
 window.onload = async () => {
   const res = await fetch('pokedex.json');
@@ -17,7 +19,11 @@ function renderList() {
     return a.id - b.id;
   });
 
-  sorted.forEach(pokemon => {
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginated = sorted.slice(start, end);
+
+  paginated.forEach(pokemon => {
     const li = document.createElement('li');
 
     const label = document.createElement('label');
@@ -34,6 +40,28 @@ function renderList() {
     li.appendChild(checkbox);
     list.appendChild(li);
   });
+
+  updatePageInfo(sorted.length);
+}
+
+function prevPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    renderList();
+  }
+}
+
+function nextPage() {
+  const maxPage = Math.ceil(pokemonData.length / itemsPerPage);
+  if (currentPage < maxPage) {
+    currentPage++;
+    renderList();
+  }
+}
+
+function updatePageInfo(totalItems) {
+  const maxPage = Math.ceil(totalItems / itemsPerPage);
+  document.getElementById('page-info').textContent = `Page ${currentPage} of ${maxPage}`;
 }
 
 function sortList(by) {

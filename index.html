@@ -14,7 +14,13 @@
     <button onclick="sortList('name')">Sort A–Z</button>
   </div>
 
-  <ul id="pokemon-list"></ul>
+  <div id="pagination-controls">
+  <button onclick="prevPage()">⟵ Prev</button>
+  <span id="page-info"></span>
+  <button onclick="nextPage()">Next ⟶</button>
+</div>
+
+<ul id="pokemon-list"></ul>
 
   <script src="script.js"></script>
 </body>
