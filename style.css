@@ -45,17 +45,15 @@ label {
 .collected {
   background-color: rgba(208, 245, 208, 0.6);
   border-radius: 5px;
-  border-colour: #b2d8b2;
-}
-
-li { 
-  padding: 4px;
-  box-sizing: border-box;
+  border: 2px solid #a2cfa2;
 }
 
 li {
+  padding: 4px;
+  box-sizing: border-box;
   border: 1px solid #e0e0e0;
   margin-bottom: 6px;
+  transition: border 0.2s ease, background-color 0.2s ease;
 }
 
 
