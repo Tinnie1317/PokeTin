@@ -39,6 +39,7 @@ function renderList() {
     checkbox.addEventListener('change', () => {
   saveCollected(pokemon.id, checkbox.checked);
   li.classList.toggle('collected', checkbox.checked);
+  updateProgressTracker(); 
 });
 
     li.appendChild(label);
