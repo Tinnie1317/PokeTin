@@ -75,3 +75,29 @@ label {
   color: #2e7d32;
 }
 
+#pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: 1em;
+  flex-wrap: wrap;
+}
+
+#pagination-controls button {
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#pagination-controls button:hover {
+  background-color: #d8ffd8;
+}
+
+#pagination-controls span {
+  font-weight: bold;
+}
