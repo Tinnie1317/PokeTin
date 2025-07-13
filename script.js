@@ -31,7 +31,7 @@ function renderList() {
 }
 
     const label = document.createElement('label');
-    label.textContent = `#${String(pokemon.id).padStart(3, '0')} ${pokemon.name}`;
+label.innerHTML = `#${String(pokemon.id).padStart(3, '0')} <span class="pokemon-name">${pokemon.name}</span>`;
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -49,6 +49,17 @@ function renderList() {
 
   updatePageInfo(sorted.length);
   updateProgressTracker();
+}
+
+function filterList() {
+  const query = document.getElementById('search-bar').value.toLowerCase();
+  const allItems = document.querySelectorAll('#pokemon-list li');
+
+  allItems.forEach(li => {
+    const nameSpan = li.querySelector('.pokemon-name');
+    const name = nameSpan ? nameSpan.textContent.toLowerCase() : '';
+    li.style.display = name.includes(query) ? '' : 'none';
+  });
 }
 
 function updateProgressTracker() {
