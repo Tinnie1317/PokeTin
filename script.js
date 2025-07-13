@@ -31,6 +31,8 @@ function renderList() {
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const visibleItems = filtered.slice(start, end);
+  const noResultsMessage = document.getElementById('no-results-message');
+noResultsMessage.style.display = visibleItems.length === 0 ? 'block' : 'none';
 
   // Render visible items
   visibleItems.forEach(pokemon => {
