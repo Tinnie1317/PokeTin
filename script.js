@@ -1,3 +1,4 @@
+let searchQuery = '';
 let pokemonData = [];
 let currentSort = 'number';
 let currentPage = 1;
@@ -15,51 +16,59 @@ function renderList() {
   const list = document.getElementById('pokemon-list');
   list.innerHTML = '';
 
+  // Sort full dataset first
   const sorted = [...pokemonData].sort((a, b) => {
     if (currentSort === 'name') return a.name.localeCompare(b.name);
     return a.id - b.id;
   });
 
+  // Filter full list by search query (if any)
+  const filtered = searchQuery
+    ? sorted.filter(pokemon => pokemon.name.toLowerCase().includes(searchQuery))
+    : sorted;
+
+  // Paginate filtered results
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  const paginated = sorted.slice(start, end);
+  const visibleItems = filtered.slice(start, end);
 
-  paginated.forEach(pokemon => {
+  // Render visible items
+  visibleItems.forEach(pokemon => {
     const li = document.createElement('li');
     if (isCollected(pokemon.id)) {
-  li.classList.add('collected');
-}
+      li.classList.add('collected');
+    }
 
     const label = document.createElement('label');
-label.innerHTML = `#${String(pokemon.id).padStart(3, '0')} <span class="pokemon-name">${pokemon.name}</span>`;
+    label.innerHTML = `#${String(pokemon.id).padStart(3, '0')} <span class="pokemon-name">${pokemon.name}</span>`;
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = isCollected(pokemon.id);
     checkbox.addEventListener('change', () => {
-  saveCollected(pokemon.id, checkbox.checked);
-  li.classList.toggle('collected', checkbox.checked);
-  updateProgressTracker(); 
-});
+      saveCollected(pokemon.id, checkbox.checked);
+      li.classList.toggle('collected', checkbox.checked);
+      updateProgressTracker();
+    });
 
     li.appendChild(label);
     li.appendChild(checkbox);
     list.appendChild(li);
   });
 
-  updatePageInfo(sorted.length);
+  // Show pagination controls always (search results also paginated)
+  document.getElementById('pagination-controls').style.display = 'flex';
+
+  // Update page info & progress based on filtered data
+  updatePageInfo(filtered.length);
   updateProgressTracker();
 }
 
 function filterList() {
-  const query = document.getElementById('search-bar').value.toLowerCase();
-  const allItems = document.querySelectorAll('#pokemon-list li');
-
-  allItems.forEach(li => {
-    const nameSpan = li.querySelector('.pokemon-name');
-    const name = nameSpan ? nameSpan.textContent.toLowerCase() : '';
-    li.style.display = name.includes(query) ? '' : 'none';
-  });
+  const input = document.getElementById('search-bar');
+  searchQuery = input.value.toLowerCase().trim();
+  currentPage = 1; // Reset to first page on new search
+  renderList();
 }
 
 function updateProgressTracker() {
