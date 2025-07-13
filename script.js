@@ -36,9 +36,10 @@ noResultsMessage.style.display = visibleItems.length === 0 ? 'block' : 'none';
 
   // Render visible items
   visibleItems.forEach(pokemon => {
-    const li = document.createElement('li');
+    const card = document.createElement('div');
+card.classList.add('pokemon-card');
     if (isCollected(pokemon.id)) {
-      li.classList.add('collected');
+   card.classList.add('collected');
     }
 
     const label = document.createElement('label');
@@ -49,13 +50,13 @@ noResultsMessage.style.display = visibleItems.length === 0 ? 'block' : 'none';
     checkbox.checked = isCollected(pokemon.id);
     checkbox.addEventListener('change', () => {
       saveCollected(pokemon.id, checkbox.checked);
-      li.classList.toggle('collected', checkbox.checked);
+      card.classList.toggle('collected', checkbox.checked);
       updateProgressTracker();
     });
 
-    li.appendChild(label);
-    li.appendChild(checkbox);
-    list.appendChild(li);
+    card.appendChild(label);
+    card.appendChild(checkbox);
+    list.appendChild(card);
   });
 
   // Show pagination controls always (search results also paginated)
