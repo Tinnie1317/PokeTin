@@ -1,8 +1,8 @@
-let searchQuery = '';
 let pokemonData = [];
 let currentSort = 'number';
 let currentPage = 1;
 const itemsPerPage = 100;
+let searchQuery = '';
 
 window.onload = async () => {
   const res = await fetch('pokedex.json');
