@@ -4,7 +4,7 @@ let itemsPerPage = 100;
 let currentSort = 'number';
 let searchQuery = '';
 
-fetch('pokedex.json')
+fetch('./pokedex.json')
   .then(res => res.json())
   .then(data => {
     pokemonData = data;
