@@ -1,3 +1,4 @@
+let searchQuery = '';
 let pokemonData = [];
 let currentSort = 'number';
 let currentPage = 1;
@@ -15,45 +16,57 @@ function renderList() {
   const list = document.getElementById('pokemon-list');
   list.innerHTML = '';
 
+  // Always sort first
   const sorted = [...pokemonData].sort((a, b) => {
     if (currentSort === 'name') return a.name.localeCompare(b.name);
     return a.id - b.id;
   });
 
+  // Filter across all Pokémon if search is active
+  const filtered = searchQuery
+    ? sorted.filter(p => p.name.toLowerCase().includes(searchQuery))
+    : sorted;
+
+  // Apply pagination only if not searching
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  const paginated = sorted.slice(start, end);
+  const visibleItems = searchQuery ? filtered : filtered.slice(start, end);
 
-  paginated.forEach(pokemon => {
+  visibleItems.forEach(pokemon => {
     const li = document.createElement('li');
     if (isCollected(pokemon.id)) {
-  li.classList.add('collected');
-}
+      li.classList.add('collected');
+    }
 
     const label = document.createElement('label');
-label.innerHTML = `#${String(pokemon.id).padStart(3, '0')} <span class="pokemon-name">${pokemon.name}</span>`;
+    label.innerHTML = `#${String(pokemon.id).padStart(3, '0')} <span class="pokemon-name">${pokemon.name}</span>`;
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = isCollected(pokemon.id);
     checkbox.addEventListener('change', () => {
-  saveCollected(pokemon.id, checkbox.checked);
-  li.classList.toggle('collected', checkbox.checked);
-  updateProgressTracker(); 
-});
+      saveCollected(pokemon.id, checkbox.checked);
+      li.classList.toggle('collected', checkbox.checked);
+      updateProgressTracker();
+    });
 
     li.appendChild(label);
     li.appendChild(checkbox);
     list.appendChild(li);
   });
 
-  updatePageInfo(sorted.length);
+  // Show or hide pagination controls
+  document.getElementById('pagination-controls').style.display = searchQuery ? 'none' : 'flex';
+
+  updatePageInfo(filtered.length);
   updateProgressTracker();
 }
 
 function filterList() {
-  const query = document.getElementById('search-bar').value.toLowerCase();
-  const allItems = document.querySelectorAll('#pokemon-list li');
+  const input = document.getElementById('search-bar');
+  searchQuery = input.value.toLowerCase().trim();
+  renderList(); // re-render based on the new query
+}
 
   allItems.forEach(li => {
     const nameSpan = li.querySelector('.pokemon-name');
