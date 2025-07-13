@@ -151,9 +151,9 @@ label {
 }
 
 .pokemon-card {
-  background-color: rgba(208, 245, 208, 0.6); /* same light green theme */
+  background-color: rgba(208, 245, 208, 0.4); /* same light green theme */
   border: 2px solid transparent;
-  padding: 1rem;
+  padding: 1.5em 0.8em 0.8em;
   border-radius: 8px;
   transition: all 0.2s ease;
   display: flex;
@@ -169,7 +169,12 @@ label {
 }
 
 .pokemon-card input[type="checkbox"] {
-  align-self: flex-start;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  transform: scale(1.2);
+  accent-color: #4CAF50; /* Optional: Match your green theme */
 }
 
 .pokemon-card.collected {
