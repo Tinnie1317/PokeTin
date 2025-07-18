@@ -5,7 +5,7 @@ let currentPage = 1;
 const itemsPerPage = 100;
 
 window.onload = async () => {
-  const res = await fetch('Pokedex.json');
+  const res = await fetch('pokedex.json');
   pokemonData = await res.json();
   loadSavedStatus();
   renderList();
