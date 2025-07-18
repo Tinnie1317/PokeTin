@@ -67,6 +67,8 @@ card.classList.add('pokemon-card');
   updateProgressTracker();
 }
 
+document.getElementById('top-of-list')?.scrollIntoView({ behavior: 'smooth' });
+
 function filterList() {
   const input = document.getElementById('search-bar');
   searchQuery = input.value.toLowerCase().trim();
