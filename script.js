@@ -65,9 +65,13 @@ card.classList.add('pokemon-card');
   // Update page info & progress based on filtered data
   updatePageInfo(filtered.length);
   updateProgressTracker();
+  
+  // Scroll to top of page on Next/Prev 
+  
+  document.getElementById('top-of-list')?.scrollIntoView({ behavior: 'smooth' });
 }
 
-document.getElementById('top-of-list')?.scrollIntoView({ behavior: 'smooth' });
+
 
 function filterList() {
   const input = document.getElementById('search-bar');
