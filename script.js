@@ -12,6 +12,15 @@ window.onload = async () => {
   updateProgressTracker(); 
 };
 
+
+function scrollToTop() {
+  const topElement = document.getElementById("top-of-list");
+  if (topElement) {
+    topElement.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+
 function renderList() {
   const list = document.getElementById('pokemon-list');
   list.innerHTML = '';
@@ -100,6 +109,7 @@ function prevPage() {
   if (currentPage > 1) {
     currentPage--;
     renderList();
+    scrollToTop();
   }
 }
 
@@ -108,6 +118,7 @@ function nextPage() {
   if (currentPage < maxPage) {
     currentPage++;
     renderList();
+    scrollToTop();
   }
 }
 
