@@ -77,23 +77,21 @@ label {
   color: #444;
 }
 
-#progress-tracker {
-  font-weight: bold;
-  margin-top: 0.3em;
-  color: #2e7d32;
-}
-
-#pagination-controls {
-  margin-top: 0.5em;
+#header-controls {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.5em;
-  flex-wrap: wrap;
+  margin-top: 0.5em;
+  gap: 1em;
+  padding: 0.3em 0.5em;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
 }
 
-#pagination-controls button {
-  padding: 0.4em 0.8em;
+#header-controls button {
+  padding: 0.4em 1em;
   font-size: 0.9em;
   font-weight: 500;
   background-color: #f0f0f0;
@@ -103,13 +101,17 @@ label {
   transition: background-color 0.2s ease;
 }
 
-#pagination-controls button:hover {
+#header-controls button:hover {
   background-color: #d8ffd8;
 }
 
-#pagination-controls span {
-  font-weight: bold;
+#header-controls #progress-tracker {
+  margin: 0;
   font-size: 0.95em;
+  font-weight: bold;
+  color: #2e7d32;
+  text-align: center;
+  flex-grow: 1;
 }
 
 #sort-controls {

@@ -12,18 +12,17 @@
 <header id="app-header">
   <h1>Pokémon Checklist</h1>
   <p>Gen 1–2 • 251 Pokémon</p>
-  <p id="progress-tracker">Collected: 0 / 251</p>
+  
+  <div id="header-controls">
+  <button id="prev-page" onclick="prevPage()">⟵ Prev</button>
+  <div id="progress-tracker">Collected: 0 / 251</div>
+  <button id="next-page" onclick="nextPage()">Next ⟶</button>
+</div>
 
   <div id="controls">
     <button onclick="sortList('number')">Sort by #</button>
     <button onclick="sortList('name')">Sort A–Z</button>
   </div>
-
-  <div id="pagination-controls">
-  <button onclick="prevPage()">⟵ Prev</button>
-  <span id="page-info"></span>
-  <button onclick="nextPage()">Next ⟶</button>
-</div>
 </header>
 
 <div id="search-container">
