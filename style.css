@@ -119,7 +119,7 @@ label {
 }
 
 #top-of-list {
-  scroll-margin-top: 80px; /* Adjust this value to match your header's height */
+  scroll-margin-top: 200px; /* Adjust this value to match your header's height */
 }
 
 #search-container {
