@@ -131,19 +131,13 @@ function loadSavedStatus() {
     localStorage.setItem('collected', '{}');
   }
   
-let lastScrollTop = 0;
-const header = document.querySelector('header');
-
 window.addEventListener('scroll', () => {
-  const currentScroll = window.scrollY || document.documentElement.scrollTop;
-
-  if (currentScroll > lastScrollTop && currentScroll > 50) {
-    header.classList.add('hide-header'); // Scrolling down
+  const header = document.getElementById('app-header');
+  if (window.scrollY > 50) {
+    header.classList.add('shrunk');
   } else {
-    header.classList.remove('hide-header'); // Scrolling up or near top
+    header.classList.remove('shrunk');
   }
-
-  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
 
 
