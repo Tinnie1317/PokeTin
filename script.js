@@ -130,4 +130,22 @@ function loadSavedStatus() {
   if (!localStorage.getItem('collected')) {
     localStorage.setItem('collected', '{}');
   }
+  
+let lastScrollTop = 0;
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY || document.documentElement.scrollTop;
+
+  if (currentScroll > lastScrollTop && currentScroll > 50) {
+    header.classList.add('hide-header'); // Scrolling down
+  } else {
+    header.classList.remove('hide-header'); // Scrolling up or near top
+  }
+
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+});
+
+
+  
 }
