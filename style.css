@@ -118,6 +118,10 @@ label {
   background-color: #d8ffd8;
 }
 
+#top-of-list {
+  scroll-margin-top: 80px; /* Adjust this value to match your header's height */
+}
+
 #search-container {
   text-align: center;
   margin: 1em auto;
