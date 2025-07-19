@@ -81,11 +81,18 @@ function filterList() {
 }
 
 function updateProgressTracker() {
-  const total = pokemonData.length;
-  const collected = pokemonData.filter(p => isCollected(p.id)).length;
+  const filtered = searchQuery
+    ? pokemonData.filter(p => p.name.toLowerCase().includes(searchQuery))
+    : pokemonData;
+
+  const total = filtered.length;
+  const collected = filtered.filter(p => isCollected(p.id)).length;
+  const totalPages = Math.ceil(total / itemsPerPage);
+  const currentPageNum = currentPage;
+
   const tracker = document.getElementById('progress-tracker');
   if (tracker) {
-    tracker.textContent = `Collected: ${collected} / ${total}`;
+    tracker.textContent = `Collected: ${collected} / ${total} — Page ${currentPageNum} of ${totalPages}`;
   }
 }
 
